@@ -15,7 +15,7 @@ export default function Navbar({ onChange }) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href={{}}>
+      <a className="navbar-brand" href="http://localhost:3000/">
         Navbar
       </a>
       <button
@@ -55,9 +55,7 @@ export default function Navbar({ onChange }) {
               Dropdown
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href={{}}>
-                Action
-              </a>
+              <div className="dropdown-item">TV</div>
               <a className="dropdown-item" href={{}}>
                 Another action
               </a>

@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import NavbarManga from "../../components/NavbarManga/NavbarManga";
+import RightSide from "../../components/RightSide/RightSide";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
@@ -52,21 +53,30 @@ export default function Manga() {
   };
 
   return (
-    <div className="home">
-      <NavbarManga onChange={onChange} />
-      <div className="home_container">
-        {manga.map((x) => (
-          <Card key={x.mal_id} data={x} />
-        ))}
-      </div>
-      <div className={classes.pagination}>
-        <Pagination
-          count={10}
-          page={page}
-          onChange={handleChange}
-          size="large"
-          color="primary"
-        />
+    <div className="container-fluid">
+      <div className="row">
+        <NavbarManga onChange={onChange} />
+        <div className="col-9">
+          <h1>Manga</h1>
+          <div className="row row--grid">
+            {manga.map((x) => (
+              <Card key={x.mal_id} data={x} />
+            ))}
+          </div>
+          <div className={classes.pagination}>
+            <Pagination
+              count={10}
+              page={page}
+              onChange={handleChange}
+              size="large"
+              color="primary"
+            />
+          </div>
+        </div>
+
+        <div className="col-3">
+          <RightSide />
+        </div>
       </div>
     </div>
   );

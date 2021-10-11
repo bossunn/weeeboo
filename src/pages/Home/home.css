@@ -1,4 +1,33 @@
-.home_container {
-    display: flex;
-    flex-wrap: wrap;
+.container-fluid {
+    padding: 0;
+}
+
+.home_name {
+    color: #FAA300;
+    margin-left: 15px;
+    font-size: 22px;
+
+    font-weight: 600;
+    margin: 15px;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.row {
+    width: 100%;
+    margin: 0;
+}
+
+.bg-3, .bg-9 {
+    background-color: #202125;
+}
+
+.rightside_name {
+    color: #FAA300;
+    font-size: 22px;
+    font-weight: 600;
+
+    margin: 15px 0;
 }

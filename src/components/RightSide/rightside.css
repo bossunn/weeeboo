@@ -1,0 +1,42 @@
+.rightside {
+    background-color: #2A2C31;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.05);
+}
+
+.listItem {
+    list-style: none;
+    padding: 0;
+}
+
+.item_rank {
+    color: #fff;
+    border-bottom: 3px solid #FAA300;
+    margin-right: 15px;
+}
+
+.item_img {
+    width: 45px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.item_name {
+    font-size: 14px;
+    color: #fff;
+}
+
+.item_view {
+    color:#AAAAAA;
+    font-size: 13px;
+}
