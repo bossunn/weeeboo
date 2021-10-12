@@ -1,0 +1,60 @@
+.year_bg {
+    padding: 15px;
+    /* display: inline-block; */
+    background-color: #2A2C31;
+    border-radius: 5px;
+}
+
+.list_year {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list_year li {
+    width: 33.3%;
+    color: white;
+    display: inline-block;
+
+    padding: 9px 10px;
+    align-items: center;
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.item_year:hover {
+    background-color: #414248;
+    border-radius: 3px;
+}
+
+li:nth-of-type(7n + 1) {
+    color: #d0e6a5;
+}
+
+li:nth-of-type(7n + 2) {
+    color: #ffdd95;
+}
+
+li:nth-of-type(7n + 3) {
+    color: #fc887b;
+}
+li:nth-of-type(7n + 3) {
+    color: #fc887b;
+}
+li:nth-of-type(7n + 3) {
+    color: #fc887b;
+}
+li:nth-of-type(7n + 4) {
+    color: #ccabda;
+}
+li:nth-of-type(7n + 5) {
+    color: #abccd8;
+}
+li:nth-of-type(7n + 6) {
+    color: #d8b2ab;
+}
+
+li:nth-of-type(7n) {
+    color: #86e3ce;
+}

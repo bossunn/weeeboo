@@ -3,7 +3,7 @@ import "./card.css";
 import { useHistory } from "react-router-dom";
 
 export default function Card({ data }) {
-  const year = data.start_date.split(" ")[1];
+  const year = data?.start_date?.split(" ")[1];
 
   const history = useHistory();
   const handleClick = (id) => {

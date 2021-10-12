@@ -7,6 +7,7 @@ import {
 import Home from './pages/Home/Home';
 import Manga from './pages/Manga/Manga';
 import DetailPage from './pages/DetailPage/DetailPage';
+import SeasonPage from './pages/SeasonPage/SeasonPage';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Switch>
         <Route path='/' exact component={Home}/>
         <Route path='/manga' component={Manga}/>
-        <Route path='/:id' component={DetailPage} />
+        <Route path='/:id' exact component={DetailPage} />
+        <Route path='/season/:year' component={SeasonPage}/>
       </Switch>
     </Router>
   );
