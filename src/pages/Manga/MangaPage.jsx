@@ -14,23 +14,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Manga() {
+export default function MangaPage() {
   const classes = useStyles();
 
   const [page, setPage] = useState(1);
-  const [subtype, setSubtype] = useState("manga");
+  // const [subtype, setSubtype] = useState("manga");
   const [manga, setManga] = useState([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchManga = async () => {
       const res = await axios.get(
-        `https://api.jikan.moe/v3/top/manga/${page}/${subtype}`
+        `https://api.jikan.moe/v3/top/manga/${page}/manga`
       );
       setManga(res.data.top);
     };
     fetchManga();
-  }, [page, subtype]);
+  }, [page]);
 
   useEffect(() => {
     const searchManga = async () => {

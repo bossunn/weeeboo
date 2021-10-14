@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
+export default function HomePage() {
   const [page, setPage] = useState(1);
-  const [cat, setCat] = useState("airing");
+  // const [cat, setCat] = useState("airing");
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
 
@@ -30,13 +30,13 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `https://api.jikan.moe/v3/top/anime/${page}/${cat}`
+        `https://api.jikan.moe/v3/top/anime/${page}/airing`
       );
       setData(res.data.top);
       console.log(res.data.top);
     };
     fetchData();
-  }, [page, cat]);
+  }, [page]);
 
   useEffect(() => {
     const fetchDataSearch = async () => {
@@ -80,9 +80,8 @@ export default function Home() {
         </div>
         <div className="col-3 bg-3">
           <h1 className="rightside_name">Best Anime of All Time</h1>
-          <FilterByYear onChange={onChange} />
+          <FilterByYear />
           <h1 className="rightside_name">Most Viewed</h1>
-
           <RightSide />
         </div>
       </div>

@@ -11,8 +11,11 @@ export default function FilterByYear({ onChange }) {
   ];
 
   const handleClick = (value) => {
+    //Đã qua trang Season nên có OnChange
+    history.push(`/season/${value}`);
     if (onChange) {
-      history.push(`/season/${value}`);
+      //Nếu history trong onChange sẽ không qua đc trang season
+      // history.push(`/season/${value}`);
       onChange(value);
     }
   };

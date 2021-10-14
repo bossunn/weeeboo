@@ -4,6 +4,10 @@
     margin-bottom: 15px;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
 .card_img {
     object-fit: cover;
     height: 220px; 
@@ -58,8 +62,14 @@
     text-align: left;
 
     color: white;
-    font-weight: 400;
+    font-weight: 600;
     height: 36px;
+
+    font-size: 14px;
+}
+
+.card-title:hover {
+    color: #FAA300;
 }
 
 .card_info {

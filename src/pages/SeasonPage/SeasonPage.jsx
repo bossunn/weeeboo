@@ -1,13 +1,12 @@
-import { Card } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useRouteMatch } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 import FilterByYear from "../../components/FilterByYear/FilterByYear";
 import Navbar from "../../components/Navbar/Navbar";
 import RightSide from "../../components/RightSide/RightSide";
-import "../Home/home.css";
+import "../HomePage/home.css";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
@@ -26,6 +25,8 @@ export default function SeasonPage() {
   const {
     params: { year },
   } = useRouteMatch();
+
+  const history = useHistory();
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
@@ -56,15 +57,37 @@ export default function SeasonPage() {
   const datas = data.slice(0, 9);
   console.log("data", datas);
 
+  const handleClick = (id) => {
+    history.push(`/${id}`);
+  };
+
   return (
     <div className="container-fluid">
       <div className="row">
         <Navbar />
         <div className="col-9 bg-9">
-          <h1 className="home_name">Top Airing Anime</h1>
+          <h1 className="home_name">Top Anime {year}</h1>
           <div className="row row--grid">
             {datas ? (
-              datas.map((x) => <Card key={x.mal_id} data={x} />)
+              data.map((x) => (
+                <div
+                  key={x.mal_id}
+                  className="col-xl-2 col-lg-3 col-sm-4 col-6"
+                  onClick={() => handleClick(x.mal_id)}
+                >
+                  <div className="card">
+                    <img src={x.image_url} alt="" className="card_img" />
+                    <div className="card_score">{x.score}</div>
+                    <div className="card_detail">
+                      <h6 className="card-title">{x.title}</h6>
+                      <div className="card_info">
+                        <span className="card_info_type">{x.type}</span>
+                        <span className="card_info_date">{year}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
             ) : (
               <div style={{ color: "white" }}>null</div>
             )}

@@ -26,6 +26,7 @@
 .item_year:hover {
     background-color: #414248;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 li:nth-of-type(7n + 1) {

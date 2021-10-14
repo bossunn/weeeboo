@@ -9,6 +9,7 @@ export default function Card({ data }) {
   const handleClick = (id) => {
     history.push(`/${id}`);
   };
+
   return (
     <div
       className="col-xl-2 col-lg-3 col-sm-4 col-6"
