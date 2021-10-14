@@ -5,6 +5,7 @@ import './App.css';
 import DetailPage from './pages/DetailPage/DetailPage';
 import HomePage from './pages/HomePage/HomePage';
 import MangaPage from "./pages/Manga/MangaPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 import SeasonPage from './pages/SeasonPage/SeasonPage';
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
     <Router className="App">
       <Switch>
         <Route path='/' exact component={HomePage}/>
-        <Route path='/manga' component={MangaPage}/>
+        <Route path='/manga' exact component={MangaPage}/>
         <Route path='/:id' exact component={DetailPage} />
-        <Route path='/season/:year' component={SeasonPage}/>
+        <Route path='/search/search' component={SearchPage} />
+        <Route path='/season/:year' exact component={SeasonPage}/>
+        
       </Switch>
     </Router>
   );

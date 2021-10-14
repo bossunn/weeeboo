@@ -54,9 +54,6 @@ export default function SeasonPage() {
     setYears(value);
   };
 
-  const datas = data.slice(0, 9);
-  console.log("data", datas);
-
   const handleClick = (id) => {
     history.push(`/${id}`);
   };
@@ -68,7 +65,7 @@ export default function SeasonPage() {
         <div className="col-9 bg-9">
           <h1 className="home_name">Top Anime {year}</h1>
           <div className="row row--grid">
-            {datas ? (
+            {data ? (
               data.map((x) => (
                 <div
                   key={x.mal_id}

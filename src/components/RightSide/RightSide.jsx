@@ -20,14 +20,14 @@ export default function RightSide() {
   }, []);
 
   const animeTopSlice = animeTop.slice(0, 10);
-  console.log(animeTopSlice);
+  // console.log(animeTopSlice);
 
   return (
     <div className="rightside">
-      <div className="leftside">
+      <div className="rightside_containter">
         <ul className="listItem">
           {animeTopSlice.map((anime) => (
-            <li className="item">
+            <li className="item" key={anime.mal_id}>
               <div>
                 <h3 className="item_rank">
                   {animeTopSlice.indexOf(anime) >= 9 ? "" : "0"}

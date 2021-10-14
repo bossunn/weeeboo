@@ -23,8 +23,8 @@ export default function FilterByYear({ onChange }) {
   return (
     <div className="year_bg">
       <ul className="list_year">
-        {years.map((year) => (
-          <li className="item_year" onClick={() => handleClick(year)}>
+        {years.map((year, id) => (
+          <li key={id} className="item_year" onClick={() => handleClick(year)}>
             {year}
           </li>
         ))}

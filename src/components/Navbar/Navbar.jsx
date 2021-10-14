@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./navbar.css";
 
 export default function Navbar({ onChange }) {
   const [query, setQuery] = useState("");
 
+  const history = useHistory();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    history.push("/search/search");
     if (onChange) {
-      onChange(query);
+      onChange({ q: query });
     }
-    console.log(query);
   };
 
   return (
