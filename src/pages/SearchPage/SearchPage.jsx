@@ -3,9 +3,11 @@ import { Pagination } from "@material-ui/lab";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
 import FilterByYear from "../../components/FilterByYear/FilterByYear";
 import Navbar from "../../components/Navbar/Navbar";
 import RightSide from "../../components/RightSide/RightSide";
+import queryString from "query-string";
 
 const useStyles = makeStyles(() => ({
   pagination: {
@@ -36,6 +38,14 @@ export default function SearchPage() {
     fetchData();
   }, [filter]);
 
+  //Để xuất hiện những filter trên thanh URL
+  useEffect(() => {
+    history.push({
+      //pathname: history.location.pathname,
+      search: queryString.stringify(filter),
+    });
+  }, [history, filter]);
+
   const handleClick = (id) => {
     history.push(`/${id}`);
   };
@@ -43,13 +53,16 @@ export default function SearchPage() {
   const onChange = (value) => {
     setFilter((prev) => ({
       ...prev,
-      value,
+      ...value,
     }));
   };
   console.log("filter", filter);
 
   const handleChange = (event, value) => {
-    setFilter({ page: value });
+    setFilter((prev) => ({
+      ...prev,
+      page: value,
+    }));
   };
 
   return (
@@ -93,6 +106,7 @@ export default function SearchPage() {
           <FilterByYear />
           <h1 className="rightside_name">Most Viewed</h1>
           <RightSide />
+          <FilterByGenre onChange={onChange} />
         </div>
       </div>
     </div>

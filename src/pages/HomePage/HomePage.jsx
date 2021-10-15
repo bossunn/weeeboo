@@ -1,11 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
+import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import FilterByYear from "../../components/FilterByYear/FilterByYear";
 import Navbar from "../../components/Navbar/Navbar";
 import RightSide from "../../components/RightSide/RightSide";
+import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
 import "./home.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -15,6 +17,14 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     "& .MuiPaginationItem-root": {
       backgroundColor: "#FAA300",
+    },
+  },
+  skeloton: {
+    "& .MuiSkeleton-rect": {
+      backgroundColor: "#303030",
+    },
+    "& .MuiSkeleton-text": {
+      backgroundColor: "#303030",
     },
   },
 }));
@@ -64,10 +74,21 @@ export default function HomePage() {
         <Navbar />
         <div className="col-9 bg-9">
           <h1 className="home_name">Top Airing Anime</h1>
+
           <div className="row row--grid">
-            {data.map((x) => (
-              <Card key={x.mal_id} data={x} />
-            ))}
+            {data === false ? (
+              <div className={classes.skeloton}>
+                <Skeleton
+                  variant="rect"
+                  animation="wave"
+                  width={210}
+                  height={250}
+                />
+                <Skeleton variant="text" />
+              </div>
+            ) : (
+              data.map((x) => <Card key={x.mal_id} data={x} />)
+            )}
           </div>
           <div className={classes.pagination}>
             <Pagination
@@ -83,6 +104,8 @@ export default function HomePage() {
           <FilterByYear />
           <h1 className="rightside_name">Most Viewed</h1>
           <RightSide />
+          <h1 className="rightside_name">Genres</h1>
+          <FilterByGenre />
         </div>
       </div>
     </div>
