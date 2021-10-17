@@ -20,7 +20,7 @@ export default function MangaPage() {
   const [page, setPage] = useState(1);
   // const [subtype, setSubtype] = useState("manga");
   const [manga, setManga] = useState([]);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchManga = async () => {
@@ -32,21 +32,21 @@ export default function MangaPage() {
     fetchManga();
   }, [page]);
 
-  useEffect(() => {
-    const searchManga = async () => {
-      const res = await axios.get(
-        `https://api.jikan.moe/v3/search/manga?q=${query}`
-      );
-      console.log(res.data.results);
-      setManga(res.data.results);
-    };
-    searchManga();
-  }, [query]);
+  // useEffect(() => {
+  //   const searchManga = async () => {
+  //     const res = await axios.get(
+  //       `https://api.jikan.moe/v3/search/manga?q=${query}`
+  //     );
+  //     console.log(res.data.results);
+  //     setManga(res.data.results);
+  //   };
+  //   searchManga();
+  // }, [query]);
 
   //xử lý truyền xuống Navbar để nhận value
-  const onChange = (value) => {
-    setQuery(value);
-  };
+  // const onChange = (value) => {
+  //   setQuery(value);
+  // };
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -55,9 +55,9 @@ export default function MangaPage() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <NavbarManga onChange={onChange} />
-        <div className="col-9">
-          <h1>Manga</h1>
+        <NavbarManga />
+        <div className="col-9 bg-9">
+          <h1 className="home_name">Manga</h1>
           <div className="row row--grid">
             {manga.map((x) => (
               <Card key={x.mal_id} data={x} />
@@ -74,7 +74,8 @@ export default function MangaPage() {
           </div>
         </div>
 
-        <div className="col-3">
+        <div className="col-3 bg-3">
+          <h1 className="home_name">Top Anime</h1>
           <RightSide />
         </div>
       </div>

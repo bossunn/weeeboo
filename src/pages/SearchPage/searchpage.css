@@ -1,0 +1,17 @@
+.banner_search {
+    display: flex;
+    align-items: center;
+}
+
+.btn-warning {
+    font-weight: 600;
+    padding: 0 5px;
+    margin-right: 10px;
+
+    background-color: #faa300;
+    font-size: 16px;
+}
+
+.dropdown-item {
+    font-weight: 600;
+}

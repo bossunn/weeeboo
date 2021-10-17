@@ -1,7 +1,7 @@
 import { Pagination } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router";
 import FilterByYear from "../../components/FilterByYear/FilterByYear";
 import Navbar from "../../components/Navbar/Navbar";
@@ -32,7 +32,7 @@ export default function SeasonPage() {
   const [page, setPage] = useState(1);
   const [years, setYears] = useState(year);
 
-  const ref = useRef();
+  // const ref = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,10 +40,11 @@ export default function SeasonPage() {
         `https://api.jikan.moe/v3/season/${years}/winter`
       );
       setData(res.data.anime);
-      ref.current = res.data.anime;
+      console.log("Data season", res.data.anime);
+      // ref.current = res.data.anime;
     };
     fetchData();
-    console.log("year", ref.current);
+    // console.log("year");
   }, [years]);
 
   const handleChange = (event, value) => {

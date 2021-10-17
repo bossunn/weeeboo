@@ -15,9 +15,8 @@ function App() {
         <Route path='/' exact component={HomePage}/>
         <Route path='/manga' exact component={MangaPage}/>
         <Route path='/:id' exact component={DetailPage} />
-        <Route path='/search/search' component={SearchPage} />
-        <Route path='/season/:year' exact component={SeasonPage}/>
-        
+        <Route path='/search/search' exact component={SearchPage} />
+        <Route path='/season/:year' exact component={SeasonPage}/>     
       </Switch>
     </Router>
   );

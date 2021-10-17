@@ -1,13 +1,15 @@
 import { makeStyles } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import axios from "axios";
+import queryString from "query-string";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
 import FilterByYear from "../../components/FilterByYear/FilterByYear";
 import Navbar from "../../components/Navbar/Navbar";
 import RightSide from "../../components/RightSide/RightSide";
-import queryString from "query-string";
+import { status } from "../../constants";
+import "./searchpage.css";
 
 const useStyles = makeStyles(() => ({
   pagination: {
@@ -24,9 +26,20 @@ export default function SearchPage() {
   const classes = useStyles();
 
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState({ page: 1 });
 
   const history = useHistory();
+  const location = useLocation();
+  console.log("Location", location);
+
+  // const id = location.state;
+  // const query = location.state?.q;
+
+  const [filter, setFilter] = useState(() => {
+    const genre = location.state?.genre;
+    return { page: 1, genre };
+  });
+
+  // const [filter, setFilter] = useState({ page: 1 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,28 +47,52 @@ export default function SearchPage() {
         params: filter,
       });
       setData(res.data.results);
+      console.log("Data", res.data.results);
     };
     fetchData();
   }, [filter]);
-
-  //Để xuất hiện những filter trên thanh URL
-  useEffect(() => {
-    history.push({
-      //pathname: history.location.pathname,
-      search: queryString.stringify(filter),
-    });
-  }, [history, filter]);
 
   const handleClick = (id) => {
     history.push(`/${id}`);
   };
 
-  const onChange = (value) => {
-    setFilter((prev) => ({
-      ...prev,
-      ...value,
-    }));
-  };
+  // const onChange = (value) => {
+  //   setFilter((prev) => ({
+  //     ...prev,
+  //     ...value,
+  //   }));
+  // };
+
+  // useEffect(() => {
+  //   setFilter((prev) => ({
+  //     ...prev,
+  //     genre: id,
+  //     query: query,
+  //   }));
+  // }, [id, query]);
+
+  // const onChangeName = (value) => {
+  //   setFilter((prev) => ({
+  //     ...prev,
+  //     ...value,
+  //   }));
+  // };
+
+  //Để xuất hiện những filter trên thanh URL
+  useEffect(() => {
+    history.push({
+      pathname: history.location.pathname,
+      search: queryString.stringify(filter),
+    });
+  }, [history, filter]);
+
+  // setFilter((prev) => ({
+  //   ...prev,
+  //   genre: id,
+  // }));
+
+  // setFilter({ ...filter, genre: location.state?.genre });
+
   console.log("filter", filter);
 
   const handleChange = (event, value) => {
@@ -68,9 +105,64 @@ export default function SearchPage() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <Navbar onChange={onChange} />
+        <Navbar />
         <div className="col-9 bg-9">
-          <h1 className="home_name">Top Airing Anime</h1>
+          <div className="banner_search">
+            <h1 className="home_name">Top Airing Anime</h1>
+            <div className="btn-group">
+              <button
+                type="button"
+                className="btn btn-warning dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Sort
+              </button>
+              <div className="dropdown-menu">
+                <div
+                  className="dropdown-item"
+                  onClick={() =>
+                    setFilter((prev) => ({ ...prev, sort: "descending" }))
+                  }
+                >
+                  Giảm
+                </div>
+                <div
+                  className="dropdown-item"
+                  onClick={() =>
+                    setFilter((prev) => ({ ...prev, sort: "ascending" }))
+                  }
+                >
+                  Tăng
+                </div>
+              </div>
+            </div>
+            <div className="btn-group">
+              <button
+                type="button"
+                className="btn btn-warning dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Status
+              </button>
+              <div className="dropdown-menu">
+                {status.map((x) => (
+                  <div
+                    className="dropdown-item"
+                    key={x.id}
+                    onClick={() =>
+                      setFilter((prev) => ({ ...prev, status: x.id }))
+                    }
+                  >
+                    {x.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           <div className="row row--grid">
             {data.map((x) => (
               <div
@@ -106,7 +198,7 @@ export default function SearchPage() {
           <FilterByYear />
           <h1 className="rightside_name">Most Viewed</h1>
           <RightSide />
-          <FilterByGenre onChange={onChange} />
+          <FilterByGenre filter={filter} />
         </div>
       </div>
     </div>

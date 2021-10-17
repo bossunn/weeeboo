@@ -3,14 +3,12 @@ import { useHistory } from "react-router";
 import { genres } from "../../constants";
 import "./filterbygenre.css";
 
-export default function FilterByGenre({ onChange }) {
+export default function FilterByGenre() {
   const history = useHistory();
 
   const handleClick = (id) => {
-    history.push("/search/search");
-    if (onChange) {
-      onChange({ genre: id });
-    }
+    history.push({ pathname: "/search/search", state: { genre: 1 } });
+    console.log(id);
   };
 
   return (
