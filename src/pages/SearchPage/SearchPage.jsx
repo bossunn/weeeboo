@@ -28,11 +28,13 @@ export default function SearchPage() {
   const [data, setData] = useState([]);
 
   const history = useHistory();
+  // console.log(history);
   const location = useLocation();
-  console.log("Location", location);
+  // console.log("Location", location);
 
-  // const id = location.state;
+  // const id = location.state?.genre;
   // const query = location.state?.q;
+  const state = location.state;
 
   const [filter, setFilter] = useState(() => {
     const genre = location.state?.genre;
@@ -56,27 +58,12 @@ export default function SearchPage() {
     history.push(`/${id}`);
   };
 
-  // const onChange = (value) => {
-  //   setFilter((prev) => ({
-  //     ...prev,
-  //     ...value,
-  //   }));
-  // };
-
-  // useEffect(() => {
-  //   setFilter((prev) => ({
-  //     ...prev,
-  //     genre: id,
-  //     query: query,
-  //   }));
-  // }, [id, query]);
-
-  // const onChangeName = (value) => {
-  //   setFilter((prev) => ({
-  //     ...prev,
-  //     ...value,
-  //   }));
-  // };
+  useEffect(() => {
+    setFilter((prev) => ({
+      ...prev,
+      ...state,
+    }));
+  }, [state]);
 
   //Để xuất hiện những filter trên thanh URL
   useEffect(() => {
@@ -85,11 +72,6 @@ export default function SearchPage() {
       search: queryString.stringify(filter),
     });
   }, [history, filter]);
-
-  // setFilter((prev) => ({
-  //   ...prev,
-  //   genre: id,
-  // }));
 
   // setFilter({ ...filter, genre: location.state?.genre });
 
@@ -198,6 +180,7 @@ export default function SearchPage() {
           <FilterByYear />
           <h1 className="rightside_name">Most Viewed</h1>
           <RightSide />
+          <h1 className="rightside_name">Genres</h1>
           <FilterByGenre filter={filter} />
         </div>
       </div>

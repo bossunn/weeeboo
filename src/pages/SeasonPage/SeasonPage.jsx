@@ -32,8 +32,6 @@ export default function SeasonPage() {
   const [page, setPage] = useState(1);
   const [years, setYears] = useState(year);
 
-  // const ref = useRef();
-
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
@@ -41,7 +39,6 @@ export default function SeasonPage() {
       );
       setData(res.data.anime);
       console.log("Data season", res.data.anime);
-      // ref.current = res.data.anime;
     };
     fetchData();
     // console.log("year");

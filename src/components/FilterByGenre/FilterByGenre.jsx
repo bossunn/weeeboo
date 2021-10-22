@@ -7,7 +7,10 @@ export default function FilterByGenre() {
   const history = useHistory();
 
   const handleClick = (id) => {
-    history.push({ pathname: "/search/search", state: { genre: 1 } });
+    history.push({
+      pathname: "/search/search",
+      state: { genre: id },
+    });
     console.log(id);
   };
 

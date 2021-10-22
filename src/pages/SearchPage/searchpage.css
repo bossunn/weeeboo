@@ -15,3 +15,7 @@
 .dropdown-item {
     font-weight: 600;
 }
+
+.dropdown-item:hover {
+    cursor: pointer;
+}
