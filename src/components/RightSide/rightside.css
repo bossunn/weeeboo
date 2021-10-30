@@ -42,3 +42,9 @@
     color:#AAAAAA;
     font-size: 13px;
 }
+
+@media (max-width: 1024px) {
+    .rightside_container {
+        display: none;
+    }
+}

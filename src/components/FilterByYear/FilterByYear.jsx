@@ -21,14 +21,21 @@ export default function FilterByYear({ onChange }) {
   };
 
   return (
-    <div className="year_bg">
-      <ul className="list_year">
-        {years.map((year, id) => (
-          <li key={id} className="item_year" onClick={() => handleClick(year)}>
-            {year}
-          </li>
-        ))}
-      </ul>
+    <div className="year_container">
+      <h1 className="rightside_name">Best Anime of All Time</h1>
+      <div className="year_bg">
+        <ul className="list_year">
+          {years.map((year, id) => (
+            <li
+              key={id}
+              className="item_year"
+              onClick={() => handleClick(year)}
+            >
+              {year}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

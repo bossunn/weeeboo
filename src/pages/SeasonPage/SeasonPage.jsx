@@ -1,27 +1,13 @@
-import { Pagination } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router";
 import FilterByYear from "../../components/FilterByYear/FilterByYear";
 import Navbar from "../../components/Navbar/Navbar";
+import { Pagination } from "../../components/Pagination/Pagination";
 import RightSide from "../../components/RightSide/RightSide";
 import "../HomePage/home.css";
 
-const useStyles = makeStyles((theme) => ({
-  pagination: {
-    display: "flex",
-    justifyContent: "center",
-    padding: "20px",
-    "& .MuiPaginationItem-root": {
-      backgroundColor: "#FAA300",
-    },
-  },
-}));
-
 export default function SeasonPage() {
-  const classes = useStyles();
-
   const {
     params: { year },
   } = useRouteMatch();
@@ -32,6 +18,8 @@ export default function SeasonPage() {
   const [page, setPage] = useState(1);
   const [years, setYears] = useState(year);
 
+  const itemPerPage = 20;
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
@@ -41,11 +29,15 @@ export default function SeasonPage() {
       console.log("Data season", res.data.anime);
     };
     fetchData();
-    // console.log("year");
   }, [years]);
 
-  const handleChange = (event, value) => {
-    setPage(value);
+  const indexOfLastPost = page * itemPerPage;
+  const indexOfFirstPost = indexOfLastPost - itemPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {
+    setPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const onChange = (value) => {
@@ -56,6 +48,8 @@ export default function SeasonPage() {
     history.push(`/${id}`);
   };
 
+  console.log(currentPosts);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -64,7 +58,7 @@ export default function SeasonPage() {
           <h1 className="home_name">Top Anime {year}</h1>
           <div className="row row--grid">
             {data ? (
-              data.map((x) => (
+              currentPosts.map((x) => (
                 <div
                   key={x.mal_id}
                   className="col-xl-2 col-lg-3 col-sm-4 col-6"
@@ -87,19 +81,16 @@ export default function SeasonPage() {
               <div style={{ color: "white" }}>null</div>
             )}
           </div>
-          <div className={classes.pagination}>
-            <Pagination
-              count={20}
-              page={page}
-              onChange={handleChange}
-              size="large"
-            />
-          </div>
+
+          <Pagination
+            moviePerPage={itemPerPage}
+            totalMovie={data.length}
+            paginate={paginate}
+            currentPage={page}
+          />
         </div>
         <div className="col-3 bg-3">
-          <h1 className="rightside_name">Best Anime of All Time</h1>
           <FilterByYear onChange={onChange} />
-          <h1 className="rightside_name">Most Viewed</h1>
           <RightSide />
         </div>
       </div>

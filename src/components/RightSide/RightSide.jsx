@@ -23,28 +23,30 @@ export default function RightSide() {
   // console.log(animeTopSlice);
 
   return (
-    <div className="rightside">
-      <div className="rightside_containter">
-        <ul className="listItem">
-          {animeTopSlice.map((anime) => (
-            <li className="item" key={anime.mal_id}>
-              <div>
-                <h3 className="item_rank">
-                  {animeTopSlice.indexOf(anime) >= 9 ? "" : "0"}
-                  {animeTopSlice.indexOf(anime) + 1}
-                </h3>
-              </div>
-              <img src={anime.image_url} alt="" className="item_img" />
-              <div>
-                <h3 className="item_name">{anime.title}</h3>
-                <span className="item_view">{anime.members} members</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="rightside_container">
+      <h1 className="rightside_name">Most Viewed</h1>
+      <div className="rightside">
+        <div className="rightside_containter">
+          <ul className="listItem">
+            {animeTopSlice.map((anime) => (
+              <li className="item" key={anime.mal_id}>
+                <div>
+                  <h3 className="item_rank">
+                    {animeTopSlice.indexOf(anime) >= 9 ? "" : "0"}
+                    {animeTopSlice.indexOf(anime) + 1}
+                  </h3>
+                </div>
+                <img src={anime.image_url} alt="" className="item_img" />
+                <div>
+                  <h3 className="item_name">{anime.title}</h3>
+                  <span className="item_view">{anime.members} members</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      {/* <div>
+        {/* <div>
         <h3>Counter {counter}</h3>
         <button
           className="btn btn-primary"
@@ -63,6 +65,7 @@ export default function RightSide() {
           toggle
         </button>
       </div> */}
+      </div>
     </div>
   );
 }

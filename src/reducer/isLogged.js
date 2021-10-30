@@ -1,10 +1,21 @@
-const loggedReducer = (state = false, action) => {
+// const loggedReducer = (state = false, action) => {
+//     switch(action.type) {
+//         case "SIGN_IN": 
+//             return !state;
+//         default: 
+//             return state;
+//     }
+// }
+
+// export default loggedReducer;
+
+const isActive = (state = false, action) => {
     switch(action.type) {
-        case "SIGN_IN": 
+        case 'IS_ACTIVE': 
             return !state;
         default: 
             return state;
     }
 }
 
-export default loggedReducer;
+export default isActive;

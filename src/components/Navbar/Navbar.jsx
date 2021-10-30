@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="http://localhost:3000/">
-        Navbar
+        AnimeMeow
       </a>
       <button
         className="navbar-toggler"
@@ -44,7 +44,7 @@ export default function Navbar() {
               Manga
             </Link>
           </li>
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
               href={{}}
@@ -71,7 +71,7 @@ export default function Navbar() {
             <a className="nav-link disabled" href={{}}>
               Disabled
             </a>
-          </li>
+          </li> */}
         </ul>
         <form className="form-inline" onSubmit={handleSubmit}>
           <input

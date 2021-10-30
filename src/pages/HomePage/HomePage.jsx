@@ -61,7 +61,7 @@ export default function HomePage() {
 
   const handleChange = (event, value) => {
     setPage(value);
-    window.scrollTo({ top: 0, behavior: "auto" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // const onChange = (value) => {
@@ -100,11 +100,10 @@ export default function HomePage() {
           </div>
         </div>
         <div className="col-3 bg-3">
-          <h1 className="rightside_name">Best Anime of All Time</h1>
           <FilterByYear />
-          <h1 className="rightside_name">Most Viewed</h1>
+
           <RightSide />
-          <h1 className="rightside_name">Genres</h1>
+
           <FilterByGenre />
         </div>
       </div>

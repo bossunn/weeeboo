@@ -31,3 +31,9 @@
 
     margin: 15px 0;
 }
+
+@media (max-width: 1024px) {
+    .col-3  {
+        display: inline-block;
+    }
+}

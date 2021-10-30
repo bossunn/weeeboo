@@ -15,18 +15,21 @@ export default function FilterByGenre() {
   };
 
   return (
-    <div className="year_bg">
-      <ul className="list_year">
-        {genres.map((genre) => (
-          <li
-            key={genre.id}
-            className="item_year"
-            onClick={() => handleClick(genre.id)}
-          >
-            {genre.name}
-          </li>
-        ))}
-      </ul>
+    <div className="year_container">
+      <h1 className="rightside_name">Genres</h1>
+      <div className="year_bg">
+        <ul className="list_year">
+          {genres.map((genre) => (
+            <li
+              key={genre.id}
+              className="item_year"
+              onClick={() => handleClick(genre.id)}
+            >
+              {genre.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

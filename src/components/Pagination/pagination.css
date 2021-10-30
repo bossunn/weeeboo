@@ -1,0 +1,39 @@
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.paginationn {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+/* .page-itemm {
+    li
+} */
+
+.page-linkk {
+    border-radius: 50%;
+    margin: 3rem 5px;
+    background-color: rgba(255,255,255,.05);
+
+    width: 40px;
+    height: 40px;
+    font-weight: 600;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #999;
+}
+
+.page-linkk.active {
+    background-color: #faa300;
+    color: #111111;
+}
+
+.page-linkk:hover {
+    color: #faa300;
+    cursor: pointer;
+}
